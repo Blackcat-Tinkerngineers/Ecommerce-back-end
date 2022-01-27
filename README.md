@@ -26,16 +26,22 @@
 ## Built With
 
 <a href="https://insomnia.rest/">https://insomnia.rest/</a>
+<br>
 </br>
 <a href="http://expressjs.com/">http://expressjs.com/</a>
+<br>
 </br>
 <a href="https://www.mysql.com/">https://www.mysql.com/</a>
+<br>
 </br>
 <a href="https://sequelize.org/v5/">https://sequelize.org/v5/</a>
+<br>
 </br>
 <a href="https://www.npmjs.com/package/dotenv">https://www.npmjs.com/package/dotenv</a>
+<br>
 </br>
 <a href="https://www.npmjs.com/package/bcrypt">https://www.npmjs.com/package/bcrypt</a>
+<br>
 </br>
 <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>
 
@@ -51,12 +57,16 @@
 
 
 <a href="https://www.npmjs.com/package/express">https://www.npmjs.com/package/express</a>
+<br>
 </br>
 <a href="https://www.npmjs.com/package/dotenv">https://www.npmjs.com/package/dotenv</a>
+<br>
 </br>
 <a href="https://www.npmjs.com/package/bcrypt">https://www.npmjs.com/package/bcrypt</a>
+<br>
 </br>
 <a href="https://www.npmjs.com/package/sequelize">https://www.npmjs.com/package/sequelize</a>
+<br>
 </br>
 <a href="https://www.npmjs.com/package/mysql2">https://www.npmjs.com/package/mysql2</a>
 
@@ -99,10 +109,14 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 🐓<a href="https://twitter.com/clbgonsalves">https://twitter.com/clbgonsalves</a>
 <br>
+</br>
 💌clbgonsalves@gmail.com
 <br>
+</br>
 👩🏻‍💻<a href="https://www.linkedin.com/in/chelsiebgonsalves/">https://www.linkedin.com/in/chelsiebgonsalves/</a>
 <br>
+</br>
 🧁<a href="https://github.com/Blackcat-Tinkerngineers/Ecommerce-back-end">https://github.com/Blackcat-Tinkerngineers/Ecommerce-back-end</a>
 <br>
+</br>
 <p align="right">(<a href="#top">back to top</a>)</p>

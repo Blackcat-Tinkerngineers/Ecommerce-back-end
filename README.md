@@ -25,9 +25,20 @@
 
 ## Built With
 
+<a href="https://insomnia.rest/">https://insomnia.rest/</a>
+</br>
 <a href="http://expressjs.com/">http://expressjs.com/</a>
 </br>
-<a hred="https://code.visualstudio.com/">https://code.visualstudio.com/</a>
+<a href="https://www.mysql.com/">https://www.mysql.com/</a>
+</br>
+<a href="https://sequelize.org/v5/">https://sequelize.org/v5/</a>
+</br>
+<a href="https://www.npmjs.com/package/dotenv">https://www.npmjs.com/package/dotenv</a>
+</br>
+<a href="https://www.npmjs.com/package/bcrypt">https://www.npmjs.com/package/bcrypt</a>
+</br>
+<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -38,13 +49,17 @@
 
 ## Installation
 
-npm i express
-<br>
-</br>
+
 <a href="https://www.npmjs.com/package/express">https://www.npmjs.com/package/express</a>
-<br>
 </br>
-<a href="http://expressjs.com/">http://expressjs.com/</a>
+<a href="https://www.npmjs.com/package/dotenv">https://www.npmjs.com/package/dotenv</a>
+</br>
+<a href="https://www.npmjs.com/package/bcrypt">https://www.npmjs.com/package/bcrypt</a>
+</br>
+<a href="https://www.npmjs.com/package/sequelize">https://www.npmjs.com/package/sequelize</a>
+</br>
+<a href="https://www.npmjs.com/package/mysql2">https://www.npmjs.com/package/mysql2</a>
+
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>

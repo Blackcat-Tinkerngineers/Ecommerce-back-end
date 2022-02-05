@@ -1,15 +1,24 @@
 const router = require('express').Router();
-const { Category, Product } = require('../../models');
+const { Category, Product, ProductTag, Tag } = require('../../models');
 
 // The `/api/categories` endpoint
 
 router.get('/', (req, res) => {
-  // find all categories
-  // be sure to include its associated Products
+  Category.findAll({
+    include: [{
+    model: ['Category','Product','Tag','ProductTag'],
+    attributes: ['id', 'product_name','price','stock','category_id','tag_id','tag_name'],
+    }]
+  })
+  .then(blackcat_ecomm_db => res.json(blackcat_ecomm_db))
+    .catch(err => { 
+      console.log(err);
+      res.status(500).json({ message: ' 🤬 Internal server error ☠️' });
+    });
 });
-
 router.get('/:id', (req, res) => {
-  // find one category by its `id` value
+  Category.findOne({
+    model: []
   // be sure to include its associated Products
 });
 

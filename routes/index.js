@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const category = require('../models/Category');
 const apiRoutes = require('./api');
 
 router.use('/api', apiRoutes);

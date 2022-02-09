@@ -1,14 +1,13 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
-
+const mysql = require('mysql2');
 
 
   const sequelize = new Sequelize
-  (process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
-
-    host: '127.0.0.1',
-    port: '3306',
+  ('blackcat_ecomm_db', 'username', 'password', {
+    username: 'localhost',
     dialect: 'mysql',
+    port: '3306',
   });
 
 module.exports=sequelize;

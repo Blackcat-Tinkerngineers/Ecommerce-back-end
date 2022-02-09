@@ -13,10 +13,12 @@
   "version": "1.0.0",
   "main": "server.js",
   "dependencies": {
+    "cli": "^1.0.1",
+    "config.json": "^0.0.1",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.15.0"
+    "sequelize": "^6.16.0"
   },
   "repository": {
     "type": "git",

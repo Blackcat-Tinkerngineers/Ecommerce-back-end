@@ -15,8 +15,7 @@
   ## About the Project
   <p></p>
 
-Ojective  
-Application built using Express.js API, MySQL and Sequelize. 
+Application built using Express, MySQL and Sequelize. 
 User will be able to create a personalized db along with a username, password to an enviroment variable file. 
 Once connected to db, 
 THEN able to connect to a database using Sequelize

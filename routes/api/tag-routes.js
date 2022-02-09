@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         }]
     }).then(tagData => {
         if (!tagData) {
-            res.status(404).json({ message: 'No tag with this id' });
+            res.status(404).json({ message: 'No tag with this id 🤬' });
             return;
         }
         res.json(tagData);

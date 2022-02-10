@@ -1,36 +1,28 @@
 {
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
+  "name": "module-13-challenge-orm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "watch": "nodemon app.js",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
-  },
-  "name": "ecommerce-back-end",
-  "description": "/",
-  "version": "1.0.0",
-  "main": "app.js",
-  "dependencies": {
-    "cli": "^1.0.1",
-    "config.json": "^0.0.1",
-    "cors": "^2.8.5",
-    "dotenv": "^14.3.2",
-    "express": "^4.17.2",
-    "mysql2": "^2.3.3",
-    "sequelize": "^6.16.1",
-    "sqlite": "^4.0.23",
-    "sqlite3": "^5.0.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Blackcat-Tinkerngineers/Ecommerce-back-end.git"
+    "url": "https://github.com/Blackcat-Tinkerngineers/Ecommerce-back-end"
   },
-  "author": "Chelsie L Bangloy-Gonsalves",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Blackcat-Tinkerngineers/Ecommerce-back-end/issues"
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   },
-  "homepage": "https://github.com/Blackcat-Tinkerngineers/Ecommerce-back-end#readme"
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.7"
+  }
 }

@@ -1,43 +1,20 @@
-const { Sequelize, Model, DataTypes } = require('sequelize'); 
-const sequelize = require('../config/connection'); 
-const sequelize = new Sequelize('sqlite::memory:');
+const { Model, DataTypes } = require('sequelize');
 
-class ProductTag extends Model {} 
+const sequelize = require('../config/connection');
 
-ProductTag.init({ 
-    id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    product_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'product',
-            key: 'id'
-        }
-    },
-    tag_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'tag',
-            key: 'id'
-        }
-    }
-}, {
+class ProductTag extends Model {}
+
+ProductTag.init(
+  {
+    // define columns
+  },
+  {
     sequelize,
-    timestamps: true,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'product_tag',
-});
-
-(async () => {
-    await sequelize.sync({ force: true });
-    // Code here
-  })();
+  }
+);
 
 module.exports = ProductTag;
-
-console.log(ProductTag === sequelize.models.product_tag); // true

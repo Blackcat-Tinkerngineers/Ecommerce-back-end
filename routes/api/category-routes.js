@@ -1,6 +1,17 @@
-const router = require('express').Router();
-const express = require('express');
-const { Category, Product } = require('../../models');
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require("../../models");
+const router = require('./product-routes');
+const Category = db.Category;
+const Product = db.Product;
+const Tag = db.Tag;
+const ProductTag = db.ProductTag;
+
+router.create = (req, res) => {
+  Category.create({
+      include: [{
+          model: Product,
+      }]
+  });
 
 router.get('/', (req, res) => { //api/categories endpoint
     Category.findAll({ //find all categories
@@ -20,7 +31,7 @@ router.get('/:id', (req, res) => {
         where: { id: req.params.id },
         include: [{
             model: Product,
-            attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+            attributes:     
         }]
     }).then(categoryData => {
         if (!categoryData) {
@@ -40,10 +51,10 @@ router.post('/', (req, res) => {
         .catch((err) => { res.json(err); })
 });
 
-router.put('/:id', (req, res) => { //update a category by its `id` value
+router.put('/:id', (req, res) => { 
     Category.update({
         category_name: req.body.category_name
-    }, { //update category base on category id
+    }, { 
         where: { id: req.params.id },
     }).then((updateCategory) => {
         res.json(updateCategory);
@@ -53,12 +64,35 @@ router.put('/:id', (req, res) => { //update a category by its `id` value
     });
 });
 
-router.delete('/:id', (req, res) => { //delete a category by id
+router.delete('/:id', (req, res) => { 
     Category.destroy({
         where: { id: req.params.id },
     }).then((deleteCategory) => {
         res.json(deleteCategory);
     }).catch((err) => res.json(err));
 });
+
+
+
+
+const category = await Category.create({
+    category_name: ('Shirts', 'Shorts', 'Music', 'Hats', 'Shoes'),
+}, { fields: ['category_name'] });
+console.log(category.category_name);
+
+await Category.update({ 
+  category_name: ('Shirts', 'Shorts', 'Music', 'Hats', 'Shoes'),
+  where: { id: req.params.id }
+});
+
+await Category.destroy({ 
+  where: {category_name: ('Shirts', 'Shorts', 'Music', 'Hats', 'Shoes'),
+}
+});
+
+
+
+
+
 
 module.exports = router;

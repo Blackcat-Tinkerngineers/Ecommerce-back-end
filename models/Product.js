@@ -1,7 +1,7 @@
-const { Model, DataTypes} = require('sequelize');
-// import our database connection from config.js
+const { Sequelize, Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
-// Initialize Product model (table) by extending off Sequelize's Model class
+const sequelize = new Sequelize('sqlite::memory:');
+
 class Product extends Model {}
 
 // set up fields and rules for Product model
@@ -41,11 +41,16 @@ Product.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'product',
-  }
-);
+  });
+
+(async () => {
+    await sequelize.sync({ force: true });
+  })();  
 
 module.exports = Product;
+
+console.log(Product === sequelize.models.product); // true

@@ -1,5 +1,6 @@
-const { Model, DataTypes } = require ('sequelize');
-const sequelize = require('../config/connection.js');
+const { Sequelize, Model, DataTypes } = require ('sequelize');
+const sequelize = require('../config/connection.js.js.js');
+const sequelize = new Sequelize('sqlite::memory:');
 
 class Tag extends Model { }
 
@@ -17,11 +18,15 @@ Tag.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'tag',
-  }
-);
+  });
+
+  (async () => {
+    await sequelize.sync({ force: true });
+  })();
 
 module.exports= Tag;
+console.log(Tag === sequelize.models.tag); // true

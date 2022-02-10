@@ -4,21 +4,24 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "watch": "nodemon server.js",
+    "start": "node app.js",
+    "watch": "nodemon app.js",
     "seed": "node seeds/index.js"
   },
   "name": "ecommerce-back-end",
   "description": "/",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "dependencies": {
     "cli": "^1.0.1",
     "config.json": "^0.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.16.0"
+    "sequelize": "^6.16.1",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2"
   },
   "repository": {
     "type": "git",

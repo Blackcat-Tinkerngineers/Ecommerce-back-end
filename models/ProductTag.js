@@ -1,9 +1,10 @@
-const { Model, DataTypes } = require('sequelize'); //import Model class from Sequelize
-const sequelize = require('../config/connection'); //import db connection 
+const { Sequelize, Model, DataTypes } = require('sequelize'); 
+const sequelize = require('../config/connection'); 
+const sequelize = new Sequelize('sqlite::memory:');
 
-class ProductTag extends Model {} //init ProductTag model by extending Sequelize Model class
+class ProductTag extends Model {} 
 
-ProductTag.init({ //initialize ProductTag class
+ProductTag.init({ 
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -26,10 +27,17 @@ ProductTag.init({ //initialize ProductTag class
     }
 }, {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'product_tag',
 });
 
+(async () => {
+    await sequelize.sync({ force: true });
+    // Code here
+  })();
+
 module.exports = ProductTag;
+
+console.log(ProductTag === sequelize.models.product_tag); // true

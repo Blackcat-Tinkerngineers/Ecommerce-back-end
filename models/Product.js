@@ -1,7 +1,6 @@
-const { Sequelize,Model, DataTypes } = require('sequelize');
-const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize('sqlite::memory:');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection.js');
+const Category = require('./Category');
 
 class Product extends Model {}
 
@@ -49,4 +48,3 @@ Product.init(
 
 module.exports = Product;
 
-console.log(Product === sequelize.models.product); // true

@@ -1,26 +1,26 @@
-// import models
 const Product = require('./Product');
 const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
+const sequelize = require('Sequelize');
 
-// Products belongsTo Category
+Product.belongsTo(Category, {
+  foreignKey: 'category_id',
+});
 
-// cat can have many products
+Category.hasMany(Product, {
+  foreignKey: 'category_id',
+});
 
-//product can only belong to one category
-// ............ 
+Product.belongsToMany(Tag, {
+  through: ProductTag,
+  foreignKey: 'product_id',
+});
 
-// Categories have many Products models
-// ............ 
-
-// Products belongToMany Tags (through ProductTag)
-// allow products to have multiple tags
-// allow tags to have multiple products
-// ............ 
-
-// Tags belongToMany Products (through ProductTag)
-// ............ 
+Tag.belongsToMany(Product, {
+  through: ProductTag,
+  foreignKey: 'tag_id',
+});
 
 module.exports = {
   Product,
@@ -28,8 +28,3 @@ module.exports = {
   Tag,
   ProductTag,
 };
-
-console.log(Product === sequelize.models.Product); // true
-console.log(Category === sequelize.models.Category); // true
-console.log(Tag === sequelize.models.Tag); // true
-console.log(ProductTag === sequelize.models.ProductTag); // true

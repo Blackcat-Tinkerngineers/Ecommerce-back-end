@@ -1,6 +1,4 @@
-const { Sequelize,Model, DataTypes } = require('sequelize');
-const { Sequelize } = require("sequelize");
-const sequelize = new Sequelize('sqlite::memory:');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection.js');
 class Tag extends Model {}
 
@@ -26,4 +24,4 @@ Tag.init(
 );
 
 module.exports = Tag;
-console.log(Tag === sequelize.models.tag); // true
+

@@ -4,12 +4,14 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
  Product.findAll({
-  include: [ Category, 
+  attributes: ['id','product_name', 'price','stock','category_id'],
+  order: [['created_at', 'DESC']],
+  include: [ Category,
     {
-    model: Tag,
-    through: ProductTag,
-  },
-],
+      modle: ['Product','ProductTag'],
+      attributes: ['id','product_name', 'price','stock','category_id','product_id','tag_id'],
+    },
+  ],
 })
   .then(dbProductData => res.json(dbProductData))
   .catch(err => {
@@ -21,88 +23,141 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
+    attributes: ['id','product_name', 'price','stock','category_id'],
+    order: [['created_at', 'DESC']],
     include: [ Category,
-    {
-      model: Tag,
-      through: ProductTag,
-    },
-  ],
+      {
+        modle: ['Product','ProductTag'],
+        attributes: ['id','product_name', 'price','stock','category_id','product_id','tag_id'],
+      },
+    ],
   })
- .then((dbProductData) => res.json(dbProductData))
+ .then((dbProductData) => {
+   if (!dbProductData) {
+     res.status(404).json({ message: 'No product found with this id' });
+     return;
+ }
+ res.json(dbProductData);
+})
   .catch((err) => {
     console.log(err);
-    res.status(400).json(err);
+    res.status(500).json(err);
   });
 });
 
 router.post('/', (req, res) => {
-  Product.create(req.body)
-    .then((product) => {
+  Product.create ({
+    id: req.body.id,
+    product_name: req.body.product_name,
+    price: req.body.price,
+    stock: req.body.stock,
+    category_id: req.body.category_id,
+    product_id: req.body.product_id,
+    tag_id: req.body.tag_id,
+  })
+    .then((dbProductData) => {
+      if (!dbProductData) {
+        res.status(404).json({ message: 'No product found with this id' });
+        return;
+    }
+    res.json(dbProductData);
+  })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+    });
+
+router.put('/:id', (req, res) => {
+  Product.update(
+    {
+      id: req.body.id,
+      product_name: req.body.product_name,
+      price: req.body.price,
+      stock: req.body.stock,
+      category_id: req.body.category_id,
+      product_id: req.body.product_id,
+      tag_id: req.body.tag_id,
+    },
+    {
+      where: {
+        id: req.params.id,
+        product_name: req.params.product_name,
+        price: req.params.price,
+        stock: req.params.stock,
+        category_id: req.params.category_id,
+        product_id: req.params.product_id,
+        tag_id: req.params.tag_id,
+      }
+  })
+    .then((dbProductData) => {
+    if (!dbProductData) {
+      res.status(404).json({ message: 'No product found with this id' });
+      return ProductTag.findAll({ where: { product_id: req.params.id } });
+    }
+    res.json(dbProductData);
+    })
+    .then((productTags) => {
       if (req.body.tagIds.length) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
-            product_id: product.id,
-            tag_id,
-          };
-        });
-        return ProductTag.bulkCreate(productTagIdArr);
-      }
-      res.status(200).json(product);
-    })
-    .then((productTagIds) => res.status(200).json(productTagIds))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
-});
-
-// update product
-router.put('/:id', (req, res) => {
-  Product.update(req.body, {
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbProductData) => {
-      return ProductTag.findAll({ where: { product_id: req.params.id } });
-    })
-    .then((productTags) => {
-      const productTagIds = productTagIds.map(({ tag_id }) => tag_id);
-  
-      const newProductTags = req.body.tagIds
-        .filter((tag_id) => !productTagIds.includes(tag_id))
-        .map((tag_id) => {
-          return {
             product_id: req.params.id,
-            tag_id,
+            tag_id: tag_id,
           };
         });
-      const productTagsToRemove = productTags
-        .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
-        .map(({ id }) => id);
-
-      return Promise.all([
-        ProductTag.destroy({ where: { id: productTagsToRemove } }),
-        ProductTag.bulkCreate(newProductTags),
-      ]);
+        ProductTag.bulkCreate(productTagIdArr, { individualHooks: true })
+          .then((productTags) => {
+            res.json(productTags);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+          });
+      } else {
+        ProductTag.destroy({ where: { product_id: req.params.id } })
+          .then((productTags) => {
+            res.json(productTags);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(400).json(err);
+          });
+      }
     })
-    .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
-      res.status(400).json(err);
-    });
-});
+        console.log(err);
+        res.status(500).json(err);
+      });
+      });
 
 router.delete('/:id', (req, res) => {
-  Product.destroy({
-    where: {
-      id: req.params.id,
+  Product.destroy(
+    {
+      id: req.body.id,
+      product_name: req.body.product_name,
+      price: req.body.price,
+      stock: req.body.stock,
+      category_id: req.body.category_id,
+      product_id: req.body.product_id,
+      tag_id: req.body.tag_id,
+    },{
+      where: {
+        id: req.params.id,
+        product_name: req.params.product_name,
+        price: req.params.price,
+        stock: req.params.stock,
+        category_id: req.params.category_id,
+        product_id: req.params.product_id,
+        tag_id: req.params.tag_id,
     },
   })
   .then((dbProductData) => {
-    console.log(dbProductData);
+    if (!dbProductData) {
+      res.status(404).json({ message: 'No product found with this id' });
+      return;
+    }
     res.json(dbProductData);
   })
   .catch((err) => {

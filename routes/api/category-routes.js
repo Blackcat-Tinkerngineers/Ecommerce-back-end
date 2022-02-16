@@ -3,12 +3,12 @@ const { Category, Product } = require('../../models');
 
 router.get('/', (req, res) => {
   Category.findAll({
-    attributes: ['id','category_id','category_name','product_name', 'price','stock','tag_name'],
+    attributes: ['id','category_name','product_name', 'price','stock','tag_name'],
     order: [['created_at', 'DESC']],
     include: [
       {
         model: ['Category','Product','ProductTag','Tag'],
-        attributes: ['id','category_id','category_name','product_name', 'price','stock','tag_name'],
+        attributes: ['id','category_name','product_name', 'price','stock','tag_name'],
       }
     ],
   })

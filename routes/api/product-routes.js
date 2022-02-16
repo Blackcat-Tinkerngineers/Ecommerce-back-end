@@ -4,14 +4,13 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
  Product.findAll({
-  attributes: ['id','product_name', 'price','stock','category_id'],
+  attributes: ['id','product_name', 'price','stock','category_id','product_id','tag_id'],
   order: [['created_at', 'DESC']],
-  include: [ Category,
+  include: 
     {
-      modle: ['Product','ProductTag'],
+      model: ['Category','Product','ProductTag'],
       attributes: ['id','product_name', 'price','stock','category_id','product_id','tag_id'],
     },
-  ],
 })
   .then(dbProductData => res.json(dbProductData))
   .catch(err => {
@@ -27,12 +26,11 @@ router.get('/:id', (req, res) => {
     },
     attributes: ['id','product_name', 'price','stock','category_id'],
     order: [['created_at', 'DESC']],
-    include: [ Category,
+    include:
       {
-        modle: ['Product','ProductTag'],
+        model: ['Category','Product','ProductTag'],
         attributes: ['id','product_name', 'price','stock','category_id','product_id','tag_id'],
       },
-    ],
   })
  .then((dbProductData) => {
    if (!dbProductData) {

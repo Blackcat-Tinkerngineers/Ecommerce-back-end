@@ -1,7 +1,5 @@
-console.log(process.env) 
 const express = require('express');
 const routes = require('./routes');
-const apiRoutes = require('expressApiRoutes');
 const sequelize = require('./config/connection');
 
 

@@ -1,12 +1,28 @@
 const router = require('express').Router();
-const express = require('express');
 const apiRoutes = require('./api');
 
 
-router.use('apiRoutes', apiRoutes);
-
+router.use('/api', apiRoutes);
 router.use((req, res) => {
-  res.send("Success!");
+  res.send(
+    [
+      {
+        category_name: 'Shirts',
+      },
+      {
+        category_name: 'Shorts',
+      },
+      {
+        category_name: 'Music',
+      },
+      {
+        category_name: 'Hats',
+      },
+      {
+        category_name: 'Shoes',
+      },
+    ]
+  );
 });
 
 module.exports = router;

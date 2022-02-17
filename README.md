@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-# Title: Back End E-Commerece Challenge
+# Title: E-comm (Objection-rational mapping)
 
 
 ## Table of Contents
@@ -15,19 +15,7 @@
   ## About the Project
   <p></p>
 
-Application built using Express, MySQL and Sequelize. 
-User will be able to create a personalized db along with a username, password to an enviroment variable file. 
-Once connected to db, 
-THEN able to connect to a database using Sequelize
-WHEN I enter schema and seed commands
-THEN a development database is created and is seeded with test data
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
-WHEN I open API GET routes in Insomnia for categories, products, or tags
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete data in my database
-
+Application built with a working Express.js API, configured to Sequelize, interacts with a Mysql DB. 
   
 <div align="center"></div>
 
@@ -65,7 +53,6 @@ THEN I am able to successfully create, update, and delete data in my database
 
 
 ## Installation
-
 
 <a href="https://www.npmjs.com/package/express">https://www.npmjs.com/package/express</a>
 <br>
